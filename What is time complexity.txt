@@ -1,0 +1,109 @@
+https://ember-party-d65.notion.site/What-is-Complexity-b67f482c51a349ac9e0119bce5fcdcb0
+
+
+
+
+What is Complexity?
+
+In programming, complexity refers to how the time or space requirements of an algorithm grow as the size of the input increases. We usually measure two types of complexity:
+
+Time Complexity – How long it takes for an algorithm to run.
+Space Complexity – How much memory (space) the algorithm uses.
+
+Time Complexity
+	Time complexity describes how the time to complete a task grows as the input size grows.
+
+For example, if you're searching for a name in a list of 10 people, it might take a few seconds. But if the list grows to 100 or 1,000 people, the time it takes could increase.
+	Here are some common time complexities:
+O(1): Constant time (quick and always the same).
+O(log n): Logarithmic time (dividing the problem in half at each step).
+O(n): Linear time (time grows directly with the input size).
+O(n log n): Linearithmic time (like efficient sorting algorithms).
+O(n²): Quadratic time (nested loops, like bubble sort).
+O(2^n): Exponential time (grows very fast, often in recursive problems).
+O(n!): Factorial time (exploring all permutations or combinations).
+
+O(1) – Constant Time:
+	E. g. Turning a light switch ON or OFF takes the same time regardless of how many rooms are in the house.
+Meaning: This means the time it takes to run the algorithm does NOT change based on the input size. It’s always the same.
+Example: Looking up the first item in a list.
+int getFirstElement(vector<int>& v) {
+    return v[0]; 
+    // Always takes the same amount of time, no matter the size of 'v'
+}
+​
+O(n) – Linear Time:
+	E. g. If you're counting how many people are at a party, you have to go one-by-one through the guest list.
+Meaning: The time it takes increases directly with the size of the input. If you have double the input, it takes twice the time.
+Example: Summing all elements in a list.
+int sumArray(vector<int>& v) {
+    int sum = 0;
+    // Loop through each element, one by one
+    for (int i = 0; i < v.size(); i++) {
+        sum += v[i];  // Add each element to 'sum'
+    }
+    return sum;
+}
+​
+O(log n) – Logarithmic Time:
+	E. g. Think of guessing a number between 1 and 100. Each time you guess, you get feedback if the number is higher or lower. With each guess, you cut the range in half until you find the number.
+Meaning: This is faster than O(n) because the algorithm reduces the problem size by half at each step. Binary search is a good example.
+Example: Searching for an element in a sorted list.
+int binarySearch(vector<int>& v, int target) {
+    int low = 0, high = v.size() - 1;
+
+    // Repeatedly divide the list in half
+    while (low <= high) {
+        int mid = low + (high - low) / 2;  // Find the middle element
+
+        if (v[mid] == target) return mid;  // If we found the element, return its position
+        else if (v[mid] < target) low = mid + 1;  // If target is larger, search the right half
+        else high = mid - 1;  // If target is smaller, search the left half
+    }
+
+    return -1;  // Element not found
+}
+​
+O(n²) – Quadratic Time:
+	E. g.  Arranging people in pairs for a dance. For each person, you have to find a partner from everyone else, and then repeat this for all the people in the group.
+Meaning: This happens when you have a loop inside another loop. The time increases very quickly as the input grows. It’s less efficient.
+Example: Sorting with Bubble Sort (not the most efficient sorting algorithm, but it's easy to understand).
+void bubbleSort(vector<int>& v) {
+    // Loop through all elements
+    for (int i = 0; i < v.size(); i++) {
+        // Inner loop to compare elements
+        for (int j = 0; j < v.size() - i - 1; j++) {
+            if (v[j] > v[j + 1]) {
+                // Swap if the next element is smaller
+                swap(v[j], v[j + 1]);
+            }
+        }
+    }
+}
+​
+Space Complexity
+	Space complexity describes how much extra memory an algorithm needs to complete a task as the input size increases.
+For example, if you're sorting 10 numbers, you might need space to store the numbers temporarily. If the list grows to 100 or 1,000 numbers, the amount of memory needed may also grow.
+Here are some common space complexities:
+O(1): Constant space (no additional memory needed).
+O(n): Linear space (extra space grows with input size).
+O(n²): Quadratic space (space grows quickly with input size).
+
+O(1) – Constant Space:
+The amount of space used doesn’t change with input size. This is ideal because we don’t need extra memory as the input grows.
+Example: Finding the largest number in a list (you only need a variable to store the largest number).
+int getMax(vector<int>& v) {
+    int maxVal = v[0];  // Only one variable 'maxVal' is used
+    for (int i = 1; i < v.size(); i++) {
+        if (v[i] > maxVal) maxVal = v[i];  // Update maxVal if a larger element is found
+    }
+    return maxVal;
+}
+​
+O(n) – Linear Space:
+	The space used grows directly with the size of the input. If you need to store additional data that depends on the input size, space complexity increases.
+Example: Copying all elements from one list to another.
+vector<int> copyArray(vector<int>& v) {
+    vector<int> copy = v;  // Creates a new list that has the same size as 'v'
+    return copy;
+}
